@@ -119,7 +119,7 @@
     }
 
     async function showTable(){
-        let raw_input = await readInputFile('/stats/growing_skills.text')
+        let raw_input = await readInputFile('./stats/growing_skills.text')
         let [titles_line,values_line] = raw_input.trim().split("---");
         let titles = titles_line.split("\n").filter((entry) => entry.length);
         console.log(titles_line,values_line)
