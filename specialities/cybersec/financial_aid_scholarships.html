@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Technology</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    
+    <nav>
+        <div class="nav__wrapper">
+            <span class="nav__logo">
+                cedar
+            </span>
+
+            <ul class="nav__links">
+                
+                <li class="nav__link"><a href="/index.html">Home</a></li>
+                <li class="nav__link"><a href="/about.html">About</a></li>
+                <li class="nav__link"><a href="/faq.html">Faq</a></li>
+                
+               <li class="nav__link">
+                    <span><a href="/specialities/infotech/index.html"></a>Information Technology</a></span>
+                    <ul class="nav__dropdown">
+                        <li class="dropdown__item"><a href="/specialities//infotech/post_grad_online.html">Post-graduate Programs Online And in VA</a></li>
+                        <li class="dropdown__item"><a href="/specialities//infotech/financial_aid_scholarships.html">Financial Aid and Scholarship</a>s</li>
+                    </ul>
+                </li>
+               
+                <li class="nav__link">
+                    <span><a href="/specialities/cybersec/index.html">Cyber Security</a></span>
+                    <ul class="nav__dropdown">
+                        <li class="dropdown__item"><a href="/specialities/cybersec/post_grad_online.html">Post-graduate Programs Online And in VA</a></li>
+                        <li class="dropdown__item"><a href="/specialities/cybersec/financial_aid_scholarships.html">Financial Aid and Scholarships</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <section class="content side__padding">
+      <section class="sub_content">
+          <div class="sub_content__body">
+            <h3>Cybersecurity Scholarships and Special Programs </h3>
+           <ul class="cybersec__scholarships">
+
+           </ul>
+
+            
+          </div>
+      </section>
+
+    </section>
+
+    <script>
+
+        async function fetchOnlinePrograms(url){
+            return await fetch(url).then(res => res.text())
+
+        }
+
+        function chunkIntoPairs(programs){
+            let chunk ;
+            let programs_chunk = [];
+            for (const key in programs) {
+                let value = programs[key]
+                if (key %2 == 0){
+                    chunk = [value] //adds th school to the chunk
+                }else {
+
+                    chunk.unshift(value); //adds the title
+                    programs_chunk.unshift(chunk.join("  --   ")) // adds the whole thing to another list
+                }
+            }
+
+            return programs_chunk;
+        }
+
+        function wrapInLi(programs_chunks){
+            return programs_chunks.map(entry => `<li>${entry}</li>`)
+        }
+
+        function insertLisIntoUl(li_entries,target){
+            let found_ul = document.querySelector(target)
+            if (found_ul){
+                found_ul.innerHTML = li_entries.join("")
+            }
+        }
+
+       async function generateLiEntries(){
+            debugger
+            let raw_entries = await fetchOnlinePrograms("/specialities/cybersec/scholarships.text");//returns a text
+            raw_entries = raw_entries.split("\n");
+            // let chunk_entries = chunkIntoPairs(raw_entries);
+            let wrapped_chunks = wrapInLi(raw_entries);
+            insertLisIntoUl(wrapped_chunks, '.cybersec__scholarships');
+        }
+
+        generateLiEntries()
+    </script>
+</body>
+</html>
