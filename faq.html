@@ -29,7 +29,8 @@
                 >
               </li>
               <li class="dropdown__item">
-                <a href="./specialities/infotech/financial_aid_scholarships.html"
+                <a
+                  href="./specialities/infotech/financial_aid_scholarships.html"
                   >Financial Aid and Scholarship</a
                 >s
               </li>
@@ -49,7 +50,8 @@
                 >
               </li>
               <li class="dropdown__item">
-                <a href="./specialities/cybersec/financial_aid_scholarships.html"
+                <a
+                  href="./specialities/cybersec/financial_aid_scholarships.html"
                   >Financial Aid and Scholarships</a
                 >
               </li>
@@ -59,7 +61,7 @@
       </div>
     </nav>
 
-    <section class="content">
+    <section class="content content_faqs">
       <section class="faqs">
         <img src="images/faq.jpg" alt="" class="faqs__img" />
         <h1>Faqs:</h1>
@@ -67,7 +69,7 @@
           <li class="faq__item">
             <h3 class="faq__header">
               Q: Is the information given on this website comprehensive? In
-              other words,is this all of the information that is available on
+              other words, is this all of the information that is available on
               all resources regarding post-graduate programs and resources in
               Virginia and online?
             </h3>
@@ -87,7 +89,7 @@
             <p class="faq__text">
               A: The reality of a career in IT or Cybersecurity means embracing
               the fact that technology continues to evolve and change – quickly,
-              in fact. Choosing a career in a fast-changing career means
+              in fact. Choosing a career in a fast-changing field means
               committing to a path of life-long learning. Earning an advanced
               degree is a terrific way to bolster your position in the field,
               but making this choice also means that you will need to continue
@@ -95,20 +97,65 @@
               career.
             </p>
           </li>
-          <li class="faq__item">
-            <h3 class="faq__header"></h3>
-            <p class="faq__text"></p>
-          </li>
-          <li class="faq__item">
-            <h3 class="faq__header"></h3>
-            <p class="faq__text"></p>
-          </li>
-          <li class="faq__item">
-            <h3 class="faq__header"></h3>
-            <p class="faq__text"></p>
-          </li>
         </ol>
       </section>
+
+      <section class="contact_form">
+        <div class="contact_form__container">
+          <h2 class="contact_form__heading">Contact us</h2>
+
+        <p>
+          Would you like to ask a question? Please fill out the form below, and
+          we’ll do our best to post an answer as soon as possible.
+        </p>
+
+        <form  class="f_contact_form" onsubmit="submitNewQuestion(event)">
+          <div class="form_group">
+            <label for="">Question</label>
+            <input type="text" placeholder="Enter your question" name="question" required />
+          </div>
+          <div class="form_group">
+            <label for="">Name</label>
+            <input type="text" placeholder="Name" name="name" required />
+          </div>
+          <div class="form_group">
+            <label for="">Email address</label>
+            <input type="text" placeholder="Email address" name="email" required />
+          </div>
+
+          <div class="f_contact_form__action">
+            <button class="btn_contact_form" type="submit">SUBMIT</button>
+          </div>
+          <a href="" class="btn_send_email" style="visibility: hidden;">Send Email</a>
+        </form>
+        </div>
+      </section>
     </section>
+
+    <script>
+
+      function submitNewQuestion(event){
+        
+        event.preventDefault();
+
+        //name, email,question
+        let name = document.querySelector('[name=name]').value;
+        let email = document.querySelector('[name=email]').value;
+        let question = document.querySelector('[name=question]').value;
+
+        if (!name.length || !email.length || !question.length){
+          alert("Please check the values provided and attempt to submit again")
+          return
+        }
+
+        let our_email= 'resourcesatcedar@gmail.com';
+        let email_body = `&body=${name} has a question: ${question}&subject="new faq question"`
+       let email_link = `mailTo:${our_email}?&from=${email}` + encodeURI(email_body)
+       
+       let btn_send_email = document.querySelector('.btn_send_email')
+       btn_send_email.setAttribute('href',email_link)
+       btn_send_email.click()
+      }
+    </script>
   </body>
 </html>

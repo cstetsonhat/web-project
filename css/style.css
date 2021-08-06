@@ -104,7 +104,7 @@ body {
 .hero,
 .programs,
 .faqs,
-.about,.side__padding {
+.about,.side__padding , .contact_form{
   padding-right: 10em;
   padding-left: 10em;
 }
@@ -169,6 +169,12 @@ body {
 
 /* faqs */
 
+.content_faqs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .faqs {
   display: flex;
   flex-direction: column;
@@ -178,6 +184,38 @@ body {
   background-color: var(--bg-transparent);
 }
 
+.contact_form__container{
+  border: 1px solid ;
+  background-color: hsla(0, 0%, 100%, 0.596);
+  padding: 25px;
+}
+
+.f_contact_form {
+  margin-top: 30px;
+}
+
+.f_contact_form > .form_group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.form_group > input {
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.f_contact_form__action {
+  display: flex;
+}
+.btn_contact_form {
+  /* width: 100px; */
+  padding: 15px 50px;
+  text-align: center;
+  margin-left: auto;
+  background-color: red;
+  color: white;
+}
 /* about */
 
 .about {
@@ -204,7 +242,7 @@ body {
 }
 
 .about__header {
-  margin-top: 200px;
+  margin-top: 50px;
   margin-bottom: 50px;
 }
 
