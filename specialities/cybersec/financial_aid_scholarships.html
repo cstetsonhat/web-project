@@ -80,7 +80,7 @@
         }
 
         function wrapInLi(programs_chunks){
-            return programs_chunks.map(entry => `<li>${entry}</li>`)
+            return programs_chunks.map(entry => `<li class="fin_aid_link">${entry}</li>`)
         }
 
         function insertLisIntoUl(li_entries,target){
@@ -91,12 +91,15 @@
         }
 
        async function generateLiEntries(){
-            debugger
+            
             let raw_entries = await fetchOnlinePrograms("./../../specialities/cybersec/scholarships.text");//returns a text
             raw_entries = raw_entries.split("\n");
             // let chunk_entries = chunkIntoPairs(raw_entries);
             let wrapped_chunks = wrapInLi(raw_entries);
             insertLisIntoUl(wrapped_chunks, '.cybersec__scholarships');
+            
+            let first_program = Array.from(document.querySelectorAll('.fin_aid_link'))[0]
+            first_program.innerHTML +=  `<a href=' https://www.sfs.opm.gov/' target="_blank" style="color:#212121;margin-left:20px">View program</a>`
         }
 
         generateLiEntries()
